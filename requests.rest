@@ -1,6 +1,10 @@
 ### Get all games
 GET http://localhost:3000/games
 
+### Get all players
+GET http://localhost:3000/players
+
+
 ### Create contact
 POST http://localhost:3000/games HTTP/1.1
 Content-Type: application/json
@@ -15,3 +19,44 @@ Content-Type: application/json
     "completed": true,
     "hoursPlayed": 60
 }
+
+### Create player
+POST http://localhost:3000/players HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Matheus",
+    "favoritePlatform": "PC",
+    "favoriteGenre": "RPG",
+    "gamesCompleted": 16
+}
+
+
+### Update game
+PUT http://localhost:3000/games/6aab39e683f354e21834c9da HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Mario Kart 8",
+    "platform": "Nintendo Switch",
+    "genre": "Racing",
+    "developer": "Nintendo",
+    "releaseYear": 2014,
+    "rating": 5,
+    "completed": true,
+    "hoursPlayed": 67
+}
+
+### Update player
+PUT http://localhost:3000/players/6aab3d459eb447328518f37d HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Matheus",
+    "favoritePlatform": "PC",
+    "favoriteGenre": "FPS",
+    "gamesCompleted": 18
+}
+
+###DELETE game
+DELETE http://localhost:3000/players/6aab3d459eb447328518f37d HTTP/1.1

@@ -28,8 +28,40 @@ const createGame = async (req, res) => {
     }
 };
 
+const updateGames = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const game = {
+        title: req.body.title,
+        platform: req.body.platform,
+        genre: req.body.genre,
+        developer: req.body.developer,
+        releaseYear: req.body.releaseYear,
+        rating: req.body.rating,
+        completed: req.body.completed,
+        hoursPlayed: req.body.hoursPlayed
+    };
+    const result = await mongodb.getDatabase().db().collection('games').replaceOne({ _id: userId },game);
+    if (result.modifiedCount > 0) {
+        res.status(204).send();
+    } else { 
+    res.status(500).json(result.error || "Some error ocurred while updating the game.")
+    }
+};
+
+const deleteGames = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb.getDatabase().db().collection('games').deleteOne({ _id: userId });
+    if (result.deletedCount > 0) {
+        res.status(204).send();
+    } else { 
+    res.status(500).json(result.error || "Some error ocurred while deleting the game.")
+    }
+};
+
 
 module.exports = {
     getAllGames,
     createGame,
+    updateGames,
+    deleteGames
 };  
