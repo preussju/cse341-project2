@@ -8,7 +8,7 @@
   "host": "cse341-project2-2rud.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/games/": {
