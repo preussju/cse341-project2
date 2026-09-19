@@ -5,19 +5,19 @@ GET http://localhost:3000/games
 GET http://localhost:3000/players
 
 
-### Create contact
+### Create game
 POST http://localhost:3000/games HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Mario Kart 8",
+    "title": "The Legend of Zelda: Breath of the Wild",
     "platform": "Nintendo Switch",
-    "genre": "Racing",
+    "genre": "Action-Adventure",
     "developer": "Nintendo",
-    "releaseYear": 2014,
+    "releaseYear": 2017,
     "rating": 5,
     "completed": true,
-    "hoursPlayed": 60
+    "hoursPlayed": 120
 }
 
 ### Create player
@@ -25,37 +25,37 @@ POST http://localhost:3000/players HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "Matheus",
+    "username": "Spencer",
     "favoritePlatform": "PC",
-    "favoriteGenre": "RPG",
-    "gamesCompleted": 16
+    "favoriteGenre": "FPS",
+    "gamesCompleted": 32
 }
 
 
 ### Update game
-PUT http://localhost:3000/games/6aab39e683f354e21834c9da HTTP/1.1
+PUT http://localhost:3000/games/6aae00874f8027fb9d8cf2a2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Mario Kart 8",
+    "title": "The Legend of Zelda: Breath of the Wild",
     "platform": "Nintendo Switch",
-    "genre": "Racing",
+    "genre": "Action-Adventure",
     "developer": "Nintendo",
-    "releaseYear": 2014,
+    "releaseYear": 2017,
     "rating": 5,
     "completed": true,
-    "hoursPlayed": 67
+    "hoursPlayed": 126
 }
 
 ### Update player
-PUT http://localhost:3000/players/6aab3d459eb447328518f37d HTTP/1.1
+PUT http://localhost:3000/players/6aae00d74f8027fb9d8cf2a3 HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "Matheus",
+    "username": "Spencer",
     "favoritePlatform": "PC",
-    "favoriteGenre": "FPS",
-    "gamesCompleted": 18
+    "favoriteGenre": "RPG",
+    "gamesCompleted": 37
 }
 
 ###DELETE game
