@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAllGames = async (req, res) => { 
+        //#swagger.tags=['Games']
     const result = await mongodb.getDatabase().db().collection('games').find();
     result.toArray().then((games) => { 
         res.setHeader('Content-Type', 'application/json');
@@ -10,6 +11,7 @@ const getAllGames = async (req, res) => {
 }
 
 const createGame = async (req, res) => {
+            //#swagger.tags=['Games']
     const game = {
         title: req.body.title,
         platform: req.body.platform,
@@ -29,6 +31,7 @@ const createGame = async (req, res) => {
 };
 
 const updateGames = async (req, res) => {
+            //#swagger.tags=['Games']
     const userId = new ObjectId(req.params.id);
     const game = {
         title: req.body.title,
@@ -49,6 +52,7 @@ const updateGames = async (req, res) => {
 };
 
 const deleteGames = async (req, res) => {
+            //#swagger.tags=['Games']
     const userId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('games').deleteOne({ _id: userId });
     if (result.deletedCount > 0) {
