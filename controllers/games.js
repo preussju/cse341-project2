@@ -15,7 +15,7 @@ const createGame = async (req, res) => {
     const { title, platform, genre, developer, releaseYear, rating, completed, hoursPlayed } = req.body;
     if (!title || !platform || !genre || !developer || releaseYear === undefined || rating === undefined || completed === undefined || hoursPlayed === undefined)
     {
-        return res.status(400).json({ message: "Missing required fields." });
+        return res.status(412).json({ message: "Missing required fields." });
     }
     const game = {
         title,
@@ -45,7 +45,7 @@ const updateGames = async (req, res) => {
  
     if (!title || !platform || !genre || !developer || releaseYear === undefined || rating === undefined || completed === undefined || hoursPlayed === undefined)
     {
-        return res.status(400).json({ message: "Missing required game fields." });
+        return res.status(412).json({ message: "Missing required game fields." });
     }
     const userId = new ObjectId(req.params.id);
     const game = {

@@ -16,7 +16,7 @@ const createPlayer = async (req, res) => {
  
     if (!username || !favoritePlatform || !favoriteGenre || gamesCompleted === undefined)
     {
-        return res.status(400).json({ message: "Missing required player fields." });
+        return res.status(412).json({ message: "Missing required player fields." });
     }
  
     const player = { username, favoritePlatform, favoriteGenre, gamesCompleted };
@@ -39,7 +39,7 @@ const updatePlayers = async (req, res) => {
  
     if (!username || !favoritePlatform || !favoriteGenre || gamesCompleted === undefined)
     {
-        return res.status(400).json({ message: "Missing required player fields." });
+        return res.status(412).json({ message: "Missing required player fields." });
     }
     const userId = new ObjectId(req.params.id);
     const player = { username, favoritePlatform, favoriteGenre, gamesCompleted };
