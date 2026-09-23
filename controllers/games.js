@@ -11,43 +11,62 @@ const getAllGames = async (req, res) => {
 }
 
 const createGame = async (req, res) => {
-            //#swagger.tags=['Games']
+    //#swagger.tags=['Games']
+    const { title, platform, genre, developer, releaseYear, rating, completed, hoursPlayed } = req.body;
+    if (!title || !platform || !genre || !developer || releaseYear === undefined || rating === undefined || completed === undefined || hoursPlayed === undefined)
+    {
+        return res.status(400).json({ message: "Missing required fields." });
+    }
     const game = {
-        title: req.body.title,
-        platform: req.body.platform,
-        genre: req.body.genre,
-        developer: req.body.developer,
-        releaseYear: req.body.releaseYear,
-        rating: req.body.rating,
-        completed: req.body.completed,
-        hoursPlayed: req.body.hoursPlayed
+        title,
+        platform,
+        genre,
+        developer,
+        releaseYear,
+        rating,
+        completed,
+        hoursPlayed
     };
-    const result = await mongodb.getDatabase().db().collection('games').insertOne(game);
-    if (result.acknowledged) {
-        res.status(204).send();
-    } else { 
-    res.status(500).json(result.error || "Some error ocurred while creating the game.")
+    try {
+        const result = await mongodb.getDatabase().db().collection('games').insertOne(game);
+        if (result.acknowledged) {
+            res.status(204).send();
+        } else {
+            res.status(500).json(result.error || "Some error ocurred while creating the game.");
+        }
+    } catch (error) {
+        res.status(500).json(error.message || "Some error ocurred while creating the game.");
     }
 };
 
 const updateGames = async (req, res) => {
-            //#swagger.tags=['Games']
+    //#swagger.tags=['Games']
+    const { title, platform, genre, developer, releaseYear, rating, completed, hoursPlayed } = req.body;
+ 
+    if (!title || !platform || !genre || !developer || releaseYear === undefined || rating === undefined || completed === undefined || hoursPlayed === undefined)
+    {
+        return res.status(400).json({ message: "Missing required game fields." });
+    }
     const userId = new ObjectId(req.params.id);
     const game = {
-        title: req.body.title,
-        platform: req.body.platform,
-        genre: req.body.genre,
-        developer: req.body.developer,
-        releaseYear: req.body.releaseYear,
-        rating: req.body.rating,
-        completed: req.body.completed,
-        hoursPlayed: req.body.hoursPlayed
+        title,
+        platform,
+        genre,
+        developer,
+        releaseYear,
+        rating,
+        completed,
+        hoursPlayed
     };
-    const result = await mongodb.getDatabase().db().collection('games').replaceOne({ _id: userId },game);
-    if (result.modifiedCount > 0) {
-        res.status(204).send();
-    } else { 
-    res.status(500).json(result.error || "Some error ocurred while updating the game.")
+    try {
+        const result = await mongodb.getDatabase().db().collection('games').replaceOne({ _id: userId }, game);
+        if (result.modifiedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json(result.error || "Some error occurred while updating the game.");
+        }
+    } catch (error) {
+        res.status(500).json(error.message || "Some error occurred while updating the game.");
     }
 };
 
