@@ -3,10 +3,11 @@ const router = express.Router();
 
 const contactsController = require('../controllers/players');
 const validation = require('../middleware/validate');
+const {isAuthenticated} = require("../middleware/authenticate")
 
 router.get('/', contactsController.getAllPlayers);
-router.post('/', validation.savePlayer, contactsController.createPlayer);  
-router.put('/:id', validation.savePlayer, contactsController.updatePlayers);
-router.delete('/:id', contactsController.deletePlayer);
+router.post('/',isAuthenticated, validation.savePlayer, contactsController.createPlayer);  
+router.put('/:id',isAuthenticated, validation.savePlayer, contactsController.updatePlayers);
+router.delete('/:id',isAuthenticated, contactsController.deletePlayer);
     
 module.exports = router;    
