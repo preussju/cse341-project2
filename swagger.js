@@ -5,7 +5,7 @@ const doc = {
         title: 'Games Api',
         description: 'Games Api'
     },
-    host: 'localhost:3000',
+    host: 'cse341-project2-2rud.onrender.com',
     schemes: ['http','https']
 };
 
